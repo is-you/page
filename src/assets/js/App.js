@@ -9,17 +9,15 @@ class App {
 	init() {
 		window.addEventListener('load', () => {
 			const tg = window.Telegram.WebApp;
-			
-			tg.MainButton.setText('Send');
-     			tg.MainButton.show();
-      			tg.MainButton.enable();
 
+			//let link = 'test.json';
 			let link_encoded = getWrongUrlParam();
 			let link = getEncodeLink(link_encoded);
 
 			if(tg.headerColor !== null){
 				setColorScheme(tg.themeParams);
 			}
+
 			createForm(link);
 		});
 	}

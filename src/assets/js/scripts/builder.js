@@ -12,7 +12,7 @@ async function createForm(link){
 
 	console.log(data);
 	for (const input of form_inputs) {
-		el_header.after(buildFormGroup(input));
+		form.append(buildFormGroup(input));
 	}
 	datepicker_init();
 	timepicker_init();
@@ -106,13 +106,15 @@ function buildInputTextArea(data_input){
 			classes : ['input__control', 'form-control'],
 			attrs: [{name: 'row', value: '3'}, {name: 'name', value: data_input.name}],
 		}),
-		buildElement('p', { classes : ['input__placeholder']}),
+		buildElement('p', {
+			classes : ['input__placeholder'],
+			textContent: data_input.placeholder
+		}),
 	]
 }
 
 function buildInputSelect(data_input){
 	const options = data_input.options.map(item=>buildInputSelectOption(item));
-	console.log(options);
 	return [
 		buildElement('select', {
 				classes : ['form-select'],
@@ -134,12 +136,11 @@ function buildInputCheck(data_input){
 	const typo = data_input.type;
 	const name = data_input.name;
 	const options = data_input.options.map((item, index)=>buildInputCheckOption(item, name, typo, index));
-	console.log(options);
-	console.log(typo);
 	return options;
 }
 
 function buildInputCheckOption(option_data, option_name, option_type, index){
+	console.log(option_data, option_name, option_type, index);
 	const id = (option_name + index);
 	return buildElement('div', {
 		classes: ['form-check']
@@ -164,7 +165,10 @@ function buildInputDatepicker(data_input){
 			classes : ['input__control', 'form-control', 'datepicker'],
 			attrs: [{name: 'type', value: 'text'},  {name: 'name', value: data_input.name},],
 		}),
-		buildElement('p', { classes : ['input__placeholder']}),
+		buildElement('p', {
+			classes : ['input__placeholder'],
+			textContent: data_input.placeholder
+		}),
 	]
 }
 
@@ -174,7 +178,10 @@ function buildInputTimepicker(data_input){
 			classes : ['input__control', 'form-control', 'timepicker'],
 			attrs: [{name: 'type', value: 'text'},  {name: 'name', value: data_input.name},],
 		}),
-		buildElement('p', { classes : ['input__placeholder']}),
+		buildElement('p', {
+			classes : ['input__placeholder'],
+			textContent: data_input.placeholder
+		}),
 	]
 }
 

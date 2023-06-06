@@ -1,8 +1,8 @@
 function datepicker_init(){
 	const config = {
-		minDate: "today",
-		maxDate: new Date().fp_incr(14),
-		dateFormat: "Y-m-d",
+			altInput: true,
+			altFormat: "d.m.Y", // view
+			dateFormat: "Y.m.d",
 	}
 
 	const datepickers = document.querySelectorAll(".datepicker");

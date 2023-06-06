@@ -12,6 +12,12 @@
 		}
 	}
 	
+	&__control{
+		&:hover{
+			cursor: text;
+		}
+	}
+	
 	&__placeholder{
 		position: absolute;
 		top : 0;
@@ -23,6 +29,7 @@
 		font-size: 1rem;
 		font-weight: 400;
 		
+		pointer-events: none;
 		opacity: 0.8;
 		transition: opacity .6s, transform .3s;
 	}

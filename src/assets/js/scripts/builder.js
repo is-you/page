@@ -17,6 +17,8 @@ async function createForm(link){
 	datepicker_init();
 	timepicker_init();
 	// after
+
+	window.Telegram.WebApp.ready();
 }
 
 function buildElement(elementName, options, childs = []) {

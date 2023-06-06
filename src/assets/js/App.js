@@ -9,6 +9,7 @@ class App {
 	init() {
 		window.addEventListener('load', () => {
 			const tg = window.Telegram.WebApp;
+			tgSetting();
 
 			//let link = 'test.json';
 			let link_encoded = getWrongUrlParam();
@@ -29,11 +30,25 @@ function getWrongUrlParam(){
 	let url_params_row = url_clear.split('?')[1];
 	let url_callback_value = url_params_row.split('=')[1]
 	console.log(url_clear,'\n---------\n', url_params_row, '\n---------\n', url_callback_value);
+
+
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	console.log(urlParams.get('callback'));
+
 	return url_callback_value;
 }
 
 function getEncodeLink(link_encoded){
 	return atob(link_encoded);
+}
+
+function tgSetting(tg){
+	tg.isClosingConfirmationEnabled = true;
+	const btn = tg.MainButton;
+	btn.setText('Send');
+	btn.disable();
+	btn.show();
 }
 
 function setColorScheme(scheme) {

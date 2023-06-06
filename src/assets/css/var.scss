@@ -1,0 +1,51 @@
+$desktop: 1440px;
+$notebook: 1280px;
+$tablet: 992px;
+$mobile: 600px;
+
+
+:root {
+  /* T - thin, El - extra light, L - light, ... Bl - black */
+  /* SIZE GLOBAL  */
+  
+  --margin-T: 8px; // 8 px
+  --margin-El: 16px;
+  --margin-L: 24px;
+  --margin-R: 32px;
+  --margin-M: 40px;
+  --margin-B: 56px;
+  --margin-Bl: 64px;
+  
+  /* SIZE BLOCK */
+
+  --padding-form-block: 12px;
+  --margin-form-block: 8px;
+
+  /* FONT */
+  
+  --text-control: 16px;
+  --text-p: 14px;
+  --text-h: 18px;
+
+  /* COLORS */
+  
+  --color-background: rgb(226, 238, 224);
+  --color-text: #202124;
+  --color-error: #333;
+  --color-decor: #EEA030;
+
+  
+  /* OTHER */
+  
+  
+  @media screen and (min-width: $mobile){
+    --padding-form-block: 24px;
+    --margin-form-block: 12px;
+    
+    --text-control: 18px;
+    --text-p: 16px;
+    --text-h: 24px;
+  }
+}
+
+

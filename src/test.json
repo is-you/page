@@ -1,0 +1,89 @@
+[
+  {
+    "type": "text",
+    "header": "text",
+    "placeholder" : "Иванов И. И.",
+    "name": "text"
+  },
+  {
+    "type": "timepicker",
+    "header": "timepicker",
+    "placeholder" : "Иванов И. И.",
+    "name": "timepicker"
+  },
+  {
+    "type": "timepicker",
+    "header": "timepickerr",
+    "placeholder" : "Иванов И. И.",
+    "name": "timepickerr"
+  },
+  {
+    "type": "datepicker",
+    "header": "datepicker",
+    "placeholder" : "Иванов И. И.",
+    "name": "datepicker"
+  },
+  {
+    "type": "textarea",
+    "header": "textarea",
+    "placeholder" : "Enter you message",
+    "name": "textarea"
+  },
+  {
+    "type": "select",
+    "header": "select",
+    "name": "select",
+    "options": [
+      {
+        "value":"one",
+        "label": "one text"
+      },
+      {
+        "value":"two",
+        "label": "two text"
+      },
+      {
+        "value":"three",
+        "label": "three text"
+      }
+    ]
+  },
+  {
+    "type": "radio",
+    "header": "radio",
+    "name": "radio",
+    "options": [
+      {
+        "value":"one",
+        "label": "one text"
+      },
+      {
+        "value":"two",
+        "label": "two text"
+      },
+      {
+        "value":"three",
+        "label": "three text"
+      }
+    ]
+  },
+  {
+    "type": "checkbox",
+    "header": "check",
+    "name": "check",
+    "options": [
+      {
+        "value":"one",
+        "label": "one text"
+      },
+      {
+        "value":"two",
+        "label": "two text"
+      },
+      {
+        "value":"three",
+        "label": "three text"
+      }
+    ]
+  }
+]

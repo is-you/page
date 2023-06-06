@@ -9,7 +9,7 @@ class App {
 	init() {
 		window.addEventListener('load', () => {
 			const tg = window.Telegram.WebApp;
-			tgSetting();
+			tgSetting(tg);
 
 			//let link = 'test.json';
 			let link_encoded = getWrongUrlParam();
@@ -44,7 +44,7 @@ function getEncodeLink(link_encoded){
 }
 
 function tgSetting(tg){
-	//tg.isClosingConfirmationEnable = true;
+	tg.isClosingConfirmationEnable = true;
 	const btn = tg.MainButton;
 	btn.setText('Send');
 	btn.disable();

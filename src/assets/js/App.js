@@ -44,7 +44,7 @@ function getEncodeLink(link_encoded){
 }
 
 function tgSetting(tg){
-	tg.isClosingConfirmationEnable = true;
+	//tg.isClosingConfirmationEnable = true;
 	const btn = tg.MainButton;
 	btn.setText('Send');
 	btn.disable();

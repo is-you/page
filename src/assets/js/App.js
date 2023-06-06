@@ -7,8 +7,7 @@ class App {
 
 	/** init other modules **/
 	init() {
-		window.addEventListener('load', () => {
-			const tg = window.Telegram.WebApp;
+		const tg = window.Telegram.WebApp;
 			tgSetting(tg);
 
 			//let link = 'test.json';
@@ -20,6 +19,9 @@ class App {
 			}
 
 			createForm(link);
+		
+		window.addEventListener('load', () => {
+			
 		});
 	}
 }

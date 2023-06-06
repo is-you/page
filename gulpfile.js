@@ -172,7 +172,7 @@ function js() {
 }
 
 function json() {
-	return src('./srs/test.json')
+	return src('./src/test.json')
 		.pipe(gulp.dest('./build/'))
 }
 

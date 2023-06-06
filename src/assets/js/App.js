@@ -10,7 +10,8 @@ class App {
 		window.addEventListener('load', () => {
 			const tg = window.Telegram.WebApp;
 			
-			getWrongUrlParam();
+			let json_encoded = getWrongUrlParam();
+			let json = encodeParam(json_encoded);
 
 			if(tg.headerColor !== null){
 				setColorScheme(tg.themeParams);
@@ -33,6 +34,11 @@ function getWrongUrlParam(){
 	return url_callback_value;
 }
 
+function encodeParam(json_encoded){
+	let json = atob(json_encoded);
+	let data = JSON.parse(json);
+	console.log(json, data);
+}
 function setColorScheme(scheme) {
 	document.documentElement.style.setProperty("--color-form-background", scheme.bg_color);
 	document.documentElement.style.setProperty("--color-background", scheme.secondary_bg_color);

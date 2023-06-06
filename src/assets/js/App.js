@@ -9,6 +9,9 @@ class App {
 	init() {
 		window.addEventListener('load', () => {
 			const tg = window.Telegram.WebApp;
+			
+			console.log(window.location.href);
+
 
 			if(tg.headerColor !== null){
 				setColorScheme(tg.themeParams);

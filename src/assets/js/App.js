@@ -36,8 +36,9 @@ function getWrongUrlParam(){
 
 function encodeParam(json_encoded){
 	let json = atob(json_encoded);
-	let data = JSON.parse(json);
-	console.log(json, data);
+	console.log(json);
+	//let data = JSON.parse(json);
+	//console.log(data);
 }
 function setColorScheme(scheme) {
 	document.documentElement.style.setProperty("--color-form-background", scheme.bg_color);

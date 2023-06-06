@@ -10,8 +10,7 @@ class App {
 		window.addEventListener('load', () => {
 			const tg = window.Telegram.WebApp;
 			
-			console.log(window.location.href);
-
+			getWrongUrlParam();
 
 			if(tg.headerColor !== null){
 				setColorScheme(tg.themeParams);
@@ -23,6 +22,15 @@ class App {
 			createForm();
 		});
 	}
+}
+
+function getWrongUrlParam(){
+	let url = window.location.href;
+	let url_clear = url.split('#tgWebAppData')[0];
+	let url_params_row = url.split('?')[1];
+	let url_callback_value = url.split('=')[1]
+	console.log(url_clear, url_params_row, url_callback_value);
+	return url_callback_value;
 }
 
 function setColorScheme(scheme) {

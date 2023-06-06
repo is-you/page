@@ -1,11 +1,18 @@
-async function createForm(){
+async function createForm(link){
 	const form = document.querySelector('.form');
-	const header_block = form.querySelector('#header');
+	const el_header = form.querySelector('#header');
 
-	const data = await getData();
+	const data = await getData(link);
 
-	for (const input of data) {
-		header_block.after(buildFormGroup(input));
+	const form_header = data.header;
+	const form_desc = data.desc;
+	const form_inputs = data.frames;
+
+	setHeader(el_header, form_header, form_desc);
+
+	console.log(data);
+	for (const input of form_inputs) {
+		el_header.after(buildFormGroup(input));
 	}
 	datepicker_init();
 	timepicker_init();
@@ -25,8 +32,9 @@ function buildElement(elementName, options, childs = []) {
 	return childs.reduce((buildElement, child) => buildElement.appendChild(child) && buildElement, buildElement);
 }
 
-function getData(){
-	return fetch('test.json')
+function getData(link){
+	console.log(link);
+	return fetch(link)
 		.then(response => {
 			if (response.ok) {
 				return  response.json();
@@ -38,6 +46,11 @@ function getData(){
 		.catch(err=>{
 			console.log(err.status)
 		})
+}
+
+function setHeader(el_form, form_header, form_desc){
+	el_form.querySelector('.form__header').textContent = form_header;
+	el_form.querySelector('.form__description').textContent = form_desc;
 }
 
 function getInput(data_input){

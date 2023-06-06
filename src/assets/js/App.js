@@ -9,18 +9,14 @@ class App {
 	init() {
 		window.addEventListener('load', () => {
 			const tg = window.Telegram.WebApp;
-			
-			let json_encoded = getWrongUrlParam();
-			let json = encodeParam(json_encoded);
+
+			let link_encoded = getWrongUrlParam();
+			let link = encodeParam(link_encoded);
 
 			if(tg.headerColor !== null){
 				setColorScheme(tg.themeParams);
 			}
-			
-			tg.MainButton.show();
-
-			console.log(tg.colorScheme, tg.headerColor, tg.backgroundColor, tg.themeParams);
-			createForm();
+			createForm(link);
 		});
 	}
 }
@@ -34,12 +30,10 @@ function getWrongUrlParam(){
 	return url_callback_value;
 }
 
-function encodeParam(json_encoded){
-	let json = atob(json_encoded);
-	console.log(json);
-	//let data = JSON.parse(json);
-	//console.log(data);
+function getEncodeLink(link_encoded){
+	return atob(link_encoded);
 }
+
 function setColorScheme(scheme) {
 	document.documentElement.style.setProperty("--color-form-background", scheme.bg_color);
 	document.documentElement.style.setProperty("--color-background", scheme.secondary_bg_color);

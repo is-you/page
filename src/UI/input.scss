@@ -1,0 +1,33 @@
+.input{
+	position: relative;
+	
+	&__label{
+		line-height: 1.5em;
+	}
+	
+	&__check {
+		&:checked{
+			background-color: var(--color-decor) ;
+			border-color: var(--color-decor) ;
+		}
+	}
+	
+	&__placeholder{
+		position: absolute;
+		top : 0;
+		
+		padding: .375rem .75rem;
+		
+		line-height: 1.5;
+		font-size: 1rem;
+		font-weight: 400;
+		
+		opacity: 0.8;
+		transition: opacity .6s, transform .3s;
+	}
+	
+	&__control:focus ~&__placeholder{
+		opacity: 0;
+		transform: translateY(-50%);
+	}
+}

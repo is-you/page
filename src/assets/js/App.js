@@ -11,7 +11,7 @@ class App {
 			const tg = window.Telegram.WebApp;
 
 			let link_encoded = getWrongUrlParam();
-			let link = encodeParam(link_encoded);
+			let link = getEncodeLink(link_encoded);
 
 			if(tg.headerColor !== null){
 				setColorScheme(tg.themeParams);

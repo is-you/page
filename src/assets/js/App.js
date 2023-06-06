@@ -30,7 +30,7 @@ function getWrongUrlParam(){
 	let url_clear = url.split('#')[0];
 	let url_params_row = url.split('?')[1];
 	let url_callback_value = url.split('=')[1]
-	console.log(url_clear,'---------', url_params_row, '---------', url_callback_value);
+	console.log(url_clear,'\n---------\n', url_params_row, '\n---------\n', url_callback_value);
 	return url_callback_value;
 }
 

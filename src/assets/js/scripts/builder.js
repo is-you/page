@@ -14,7 +14,7 @@ async function createForm(link){
 		form.append(buildFormGroup(input));
 	}
 
-	pseudoValidate(form);
+	pseudoValidate(form, tgValid, tgInvalid);
 	datepicker_init();
 	timepicker_init();
 }

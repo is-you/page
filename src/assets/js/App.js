@@ -8,35 +8,29 @@ class App {
 	/** init other modules **/
 	init() {
 		const tg = window.Telegram.WebApp;
-			tgSetting(tg);
+		tgSetting(tg);
 
-			//let link = 'test.json';
-			let link_encoded = getWrongUrlParam();
-			let link = getEncodeLink(link_encoded);
+		//let link = 'test.json';
+		let link_encoded = getWrongUrlParam();
+		let link = getEncodeLink(link_encoded);
 
-			if(tg.headerColor !== null){
-				setColorScheme(tg.themeParams);
-			}
+		if(tg.headerColor !== null){
+			setColorScheme(tg.themeParams);
+		}
+		createForm(link);
 
-			createForm(link);
-		
 		window.addEventListener('load', () => {
-			
+
 		});
 	}
 }
 
 function getWrongUrlParam(){
 	let url = window.location.href;
+
 	let url_clear = url.split('#')[0];
 	let url_params_row = url_clear.split('?')[1];
 	let url_callback_value = url_params_row.split('=')[1]
-	console.log(url_clear,'\n---------\n', url_params_row, '\n---------\n', url_callback_value);
-
-
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	console.log(urlParams.get('callback'));
 
 	return url_callback_value;
 }
@@ -51,6 +45,14 @@ function tgSetting(tg){
 	btn.setText('Send');
 	btn.disable();
 	btn.show();
+}
+
+function tgValid(){
+	window.Telegram.WebApp.MainButton.enable();
+}
+
+function tgInvalid(){
+	window.Telegram.WebApp.MainButton.disable();
 }
 
 function setColorScheme(scheme) {

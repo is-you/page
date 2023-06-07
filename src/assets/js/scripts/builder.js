@@ -8,17 +8,15 @@ async function createForm(link){
 	const form_desc = data.desc;
 	const form_inputs = data.frames;
 
-	setHeader(el_header, form_header, form_desc);
+	initForm(form, form_header, form_desc);
 
-	console.log(data);
 	for (const input of form_inputs) {
 		form.append(buildFormGroup(input));
 	}
+
+	pseudoValidate(form);
 	datepicker_init();
 	timepicker_init();
-	// after
-
-	window.Telegram.WebApp.ready();
 }
 
 function buildElement(elementName, options, childs = []) {
@@ -35,7 +33,6 @@ function buildElement(elementName, options, childs = []) {
 }
 
 function getData(link){
-	console.log(link);
 	return fetch(link)
 		.then(response => {
 			if (response.ok) {
@@ -50,9 +47,11 @@ function getData(link){
 		})
 }
 
-function setHeader(el_form, form_header, form_desc){
+function initForm(el_form, form_header, form_desc){
 	el_form.querySelector('.form__header').textContent = form_header;
 	el_form.querySelector('.form__description').textContent = form_desc;
+	el_form.style.display= 'flex';
+	document.querySelector('.preloader').style.display = 'none';
 }
 
 function getInput(data_input){
@@ -142,7 +141,6 @@ function buildInputCheck(data_input){
 }
 
 function buildInputCheckOption(option_data, option_name, option_type, index){
-	console.log(option_data, option_name, option_type, index);
 	const id = (option_name + index);
 	return buildElement('div', {
 		classes: ['form-check']
@@ -162,10 +160,21 @@ function buildInputCheckOption(option_data, option_name, option_type, index){
 }
 
 function buildInputDatepicker(data_input){
+	let attrs = [
+		{name: 'type', value: 'text'},
+		{name: 'name', value: data_input.name},
+	];
+
+	if (data_input.dateFormat)
+		attrs.push({name: 'data-dateformat', value: data_input.dateFormat});
+	if (data_input.altInput)
+		attrs.push({name: 'data-altinput', value: data_input.altInput});
+	if (data_input.dateFormat)
+		attrs.push({name: 'data-altformat', value: data_input.altFormat});
 	return [
 		buildElement('input', {
 			classes : ['input__control', 'form-control', 'datepicker'],
-			attrs: [{name: 'type', value: 'text'},  {name: 'name', value: data_input.name},],
+			attrs : attrs,
 		}),
 		buildElement('p', {
 			classes : ['input__placeholder'],

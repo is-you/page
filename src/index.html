@@ -18,9 +18,26 @@
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
+
 <div class="content">
 	<section class="section">
 		<div class="section__content">
+			<div class="preloader">
+				<?xml version="1.0" encoding="utf-8"?>
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<circle cx="30" cy="50" fill="#85a2b6" r="20">
+						<animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30" begin="-0.5s"></animate>
+					</circle>
+					<circle cx="70" cy="50" fill="#bbcedd" r="20">
+						<animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30" begin="0s"></animate>
+					</circle>
+					<circle cx="30" cy="50" fill="#85a2b6" r="20">
+						<animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30" begin="-0.5s"></animate>
+						<animate attributeName="fill-opacity" values="0;0;1;1" calcMode="discrete" keyTimes="0;0.499;0.5;1" dur="1s" repeatCount="indefinite"></animate>
+					</circle>
+				</svg>
+			</div>
+			
 			<form class="form" action="">
 				<div id='header' class="form_group form_group--header">
 					<h1 class="form__header"></h1>

@@ -1,5 +1,7 @@
 .form{
-	display: flex;
+	display:  none;
+	
+	//display: flex;
 	flex-direction: column;
 	
 	&__header{
@@ -16,7 +18,6 @@
 	&__description{
 	
 	}
-	
 	
 	&__send{
 		min-width: 200px;

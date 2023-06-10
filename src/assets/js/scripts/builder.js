@@ -218,6 +218,7 @@ function buildInputTimepicker(data_input){
 }
 
 function buildDescription(text){
+	console.log(text);
 	let rows = text.split('\n');
 	return rows.map(row => buildElement('p', {textContent:row}));
 }

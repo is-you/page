@@ -1,8 +1,8 @@
 async function createForm(link){
 	const form = document.querySelector('.form');
 
-
 	const data = await getData(link);
+	console.log(data);
 
 	const form_header = data.header;
 	const form_desc = data.desc;

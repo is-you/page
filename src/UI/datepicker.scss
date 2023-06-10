@@ -4,9 +4,12 @@
 	font-size   : var(--text-p) ;
 	&-calendar{
 		padding: 10px var(--padding-form-block) ;
-		
+		box-sizing: border-box;
+		width: auto;
+
 		&.noCalendar{
 			padding: 0;
+			min-width: 200px;
 		}
 	}
 	&-time {
@@ -17,29 +20,38 @@
 			line-height : 36px;
 		}
 	}
-	
+
 	&-day {
 		font-family : 'Roboto', sans-serif;
 		font-weight : 400;
 		font-size   : var(--text-p);
-		
+
 		&.selected {
 			background-color : var(--color-decor);
 			border: 1px solid var(--color-decor);
-			
+
 			&:hover{
 				background-color : var(--color-decor);
 				border: 1px solid var(--color-decor);
 			}
 		}
 	}
+	
 	&-weekday{
 		font-family : 'Roboto', sans-serif;
 		font-weight : 400;
 		font-size   : 12px;
 	}
-	
+
+	&-current-month input.cur-year {
+		font-family : 'Roboto', sans-serif;
+	}
+
 	&-current-month &-monthDropdown-months{
 		font-family : 'Roboto', sans-serif;
 	}
+}
+.flatpickr-months .flatpickr-prev-month, .flatpickr-months .flatpickr-next-month {
+	display: flex;
+	align-items: center;
 }

@@ -8,11 +8,11 @@ class App {
 	/** init other modules **/
 	init() {
 		const tg = window.Telegram.WebApp;
-		tgSetting(tg);
 
-//		let link = 'test.json';
+		//let link = 'test.json';
 		let link_encoded = getWrongUrlParam();
 		let link = getEncodeLink(link_encoded);
+		mainButtonClicked.bind(link);
 
 		if (tg.headerColor !== null) {
 			setColorScheme(tg.themeParams);
@@ -29,6 +29,7 @@ class App {
 			setColorScheme(theme_params);
 		}
 
+		tgSetting(tg);
 		createForm(link);
 
 		window.addEventListener('load', () => {
@@ -54,9 +55,22 @@ function tgSetting(tg) {
 	tg.enableClosingConfirmation();
 	tg.isClosingConfirmationEnable = true;
 	const btn = tg.MainButton;
+	btn.onEvent('mainButtonClicked', mainButtonClicked);
 	btn.setText('Send');
 	btn.disable();
 	btn.show();
+}
+
+function mainButtonClicked(link){
+	const data = {};
+	console.log(link);
+	fetch(link, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8'
+		},
+		body: JSON.stringify(data)
+	});
 }
 
 function tgValid() {

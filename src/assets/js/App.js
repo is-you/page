@@ -10,13 +10,25 @@ class App {
 		const tg = window.Telegram.WebApp;
 		tgSetting(tg);
 
-		//let link = 'test.json';
+//		let link = 'test.json';
 		let link_encoded = getWrongUrlParam();
 		let link = getEncodeLink(link_encoded);
 
-		if(tg.headerColor !== null){
+		if (tg.headerColor !== null) {
 			setColorScheme(tg.themeParams);
+		} else {
+			const theme_params = {
+				bg_color: "#212121",
+				button_color: "#8774e1",
+				button_text_color: "#ffffff",
+				hint_color: "#aaaaaa",
+				link_color: "#8774e1",
+				secondary_bg_color: "#0f0f0f",
+				text_color: "#ffffff"
+			};
+			setColorScheme(theme_params);
 		}
+
 		createForm(link);
 
 		window.addEventListener('load', () => {
@@ -24,7 +36,7 @@ class App {
 	}
 }
 
-function getWrongUrlParam(){
+function getWrongUrlParam() {
 	let url = window.location.href;
 
 	let url_clear = url.split('#')[0];
@@ -34,11 +46,11 @@ function getWrongUrlParam(){
 	return url_callback_value;
 }
 
-function getEncodeLink(link_encoded){
+function getEncodeLink(link_encoded) {
 	return atob(link_encoded);
 }
 
-function tgSetting(tg){
+function tgSetting(tg) {
 	tg.enableClosingConfirmation();
 	tg.isClosingConfirmationEnable = true;
 	const btn = tg.MainButton;
@@ -47,11 +59,11 @@ function tgSetting(tg){
 	btn.show();
 }
 
-function tgValid(){
+function tgValid() {
 	window.Telegram.WebApp.MainButton.enable();
 }
 
-function tgInvalid(){
+function tgInvalid() {
 	window.Telegram.WebApp.MainButton.disable();
 }
 

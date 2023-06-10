@@ -86,9 +86,11 @@
 	//}
 	
 	&__header{
-		margin-bottom: var(--padding-form-block) ;
+		margin-bottom: 8px ;
 		
+		color: var(--color-decor) ;
 		font-size: var(--text-h) ;
-		font-weight: 400;
+		font-weight: 500;
+		opacity: 0.7;
 	}
 }

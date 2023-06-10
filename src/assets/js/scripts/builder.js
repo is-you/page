@@ -1,6 +1,6 @@
 async function createForm(link){
 	const form = document.querySelector('.form');
-	const el_header = form.querySelector('#header');
+
 
 	const data = await getData(link);
 
@@ -49,9 +49,11 @@ function getData(link){
 
 function initForm(el_form, form_header, form_desc){
 	el_form.querySelector('.form__header').textContent = form_header;
-	el_form.querySelector('.form__description').textContent = form_desc;
 	el_form.style.display= 'flex';
 	document.querySelector('.preloader').style.display = 'none';
+
+	const el_header = el_form.querySelector('#header');
+	el_header.append(buildElement('div', { classes : ['form__description']}, buildDescription(form_desc)));
 }
 
 function getInput(data_input){
@@ -92,7 +94,11 @@ function buildInputText(data_input){
 	return [
 		buildElement('input', {
 				classes : ['input__control', 'form-control'],
-				attrs: [{name: 'type', value: 'text'},  {name: 'name', value: data_input.name},],
+				attrs: [
+					{name: 'type', value: 'text'},
+					{name: 'name', value: data_input.name},
+					{name: 'placeholder', value: '    '},
+				],
 			}),
 		buildElement('p', {
 			classes : ['input__placeholder'],
@@ -105,7 +111,11 @@ function buildInputTextArea(data_input){
 	return [
 		buildElement('textarea', {
 			classes : ['input__control', 'form-control'],
-			attrs: [{name: 'row', value: '3'}, {name: 'name', value: data_input.name}],
+			attrs: [
+				{name: 'row', value: '3'},
+				{name: 'name', value: data_input.name},
+				{name: 'placeholder', value: '    '},
+			],
 		}),
 		buildElement('p', {
 			classes : ['input__placeholder'],
@@ -163,6 +173,7 @@ function buildInputDatepicker(data_input){
 	let attrs = [
 		{name: 'type', value: 'text'},
 		{name: 'name', value: data_input.name},
+		{name: 'placeholder', value: '    '},
 	];
 
 	if (data_input.dateFormat)
@@ -187,12 +198,20 @@ function buildInputTimepicker(data_input){
 	return [
 		buildElement('input', {
 			classes : ['input__control', 'form-control', 'timepicker'],
-			attrs: [{name: 'type', value: 'text'},  {name: 'name', value: data_input.name},],
+			attrs: [
+				{name: 'type', value: 'text'},
+				{name: 'name', value: data_input.name},
+				{name: 'placeholder', value: '    '},],
 		}),
 		buildElement('p', {
 			classes : ['input__placeholder'],
 			textContent: data_input.placeholder
 		}),
 	]
+}
+
+function buildDescription(text){
+	let rows = text.split('\n');
+	return rows.map(row => buildElement('p', {textContent:row}));
 }
 

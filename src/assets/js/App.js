@@ -12,6 +12,9 @@ class App {
 		//let link = 'test.json';
 		let link_encoded = getWrongUrlParam();
 		let link = getEncodeLink(link_encoded);
+
+		console.log(link);
+
 		mainButtonClicked.bind(link);
 
 		if (tg.headerColor !== null) {

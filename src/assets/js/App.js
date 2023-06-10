@@ -73,6 +73,7 @@ function setColorScheme(scheme) {
 	document.documentElement.style.setProperty("--color-decor", scheme.button_color);
 	document.documentElement.style.setProperty("--color-button-text", scheme.button_text_color);
 	document.documentElement.style.setProperty("--color-text", scheme.text_color);
+	document.documentElement.style.setProperty("--color-hint", scheme.hint_color);
 }
 
 new App();

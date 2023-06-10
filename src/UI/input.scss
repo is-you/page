@@ -14,7 +14,7 @@
 		font-weight: 400;
 		line-height: 1.5;
 		
-		border: 2px solid transparent;
+		border: 2px solid var(--color-hint);
 		background-color: var(--color-background);
 		
 		color: var(--color-text) ;
@@ -80,7 +80,7 @@
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		appearance: none;
-		border: 2px solid transparent;
+		border: 2px solid var(--color-hint);
 		
 		background-color: var(--color-background);
 		
@@ -100,7 +100,7 @@
 	&__placeholder{
 		position: absolute;
 		top : 0;
-		color: var(--color-text) ;
+		color: var(--color-hint) ;
 		
 		display: block;
 		width: 100%;

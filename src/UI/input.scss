@@ -73,6 +73,7 @@
 		line-height: 1.5;
 		
 		background-clip: padding-box;
+		border: none;
 		
 		-webkit-appearance: none;
 		-moz-appearance: none;
@@ -82,7 +83,12 @@
 		background-color: var(--color-background);
 		color: var(--color-text) ;
 		
-		
+		.form-control:focus {
+			border: none;
+			color: var(--color-text) ;
+			background-color: var(--color-background);
+			box-shadow: 0 0 0 0.25rem var(--color-decor) ;
+		}
 		
 		&:hover{
 			cursor: text;

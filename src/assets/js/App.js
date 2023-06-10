@@ -62,8 +62,10 @@ function tgSetting(tg) {
 }
 
 function mainButtonClicked(link){
-	const data = {};
-	console.log(link);
+	const data = getData();
+
+	console.log(link, data);
+
 	fetch(link, {
 		method: 'POST',
 		headers: {

@@ -55,7 +55,7 @@ function tgSetting(tg) {
 	tg.enableClosingConfirmation();
 	tg.isClosingConfirmationEnable = true;
 	const btn = tg.MainButton;
-	btn.onEvent('mainButtonClicked', mainButtonClicked);
+	tg.onEvent('mainButtonClicked', mainButtonClicked);
 	btn.setText('Send');
 	btn.disable();
 	btn.show();

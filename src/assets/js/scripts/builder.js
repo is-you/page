@@ -7,8 +7,9 @@ async function createForm(link){
 	const form_header = data.header;
 	const form_desc = data.desc;
 	const form_inputs = data.frames;
+	const form_button = data.button;
 
-	initForm(form, form_header, form_desc);
+	initForm(form, form_header, form_desc, form_button);
 
 	for (const input of form_inputs) {
 		form.append(buildFormGroup(input));
@@ -47,13 +48,15 @@ function getData(link){
 		})
 }
 
-function initForm(el_form, form_header, form_desc){
+function initForm(el_form, form_header, form_desc, form_button){
 	el_form.querySelector('.form__header').textContent = form_header;
 	el_form.style.display= 'flex';
 	document.querySelector('.preloader').style.display = 'none';
 
 	const el_header = el_form.querySelector('#header');
 	el_header.append(buildElement('div', { classes : ['form__description']}, buildDescription(form_desc)));
+
+	window.Telegram.WebApp.MainButton.setText(form_button);
 }
 
 function getInput(data_input){
@@ -152,6 +155,7 @@ function buildInputCheck(data_input){
 
 function buildInputCheckOption(option_data, option_name, option_type, index){
 	const id = (option_name + index);
+	const radio_style = (option_type === 'radio') ? 'input__check__decor' : '';
 	return buildElement('div', {
 		classes: ['form-check']
 	},
@@ -160,6 +164,9 @@ function buildInputCheckOption(option_data, option_name, option_type, index){
 				attrs: [{name: 'name', value: option_name}, {name: 'value', value: option_data.value}, {name: 'type', value: option_type}],
 				classes: ['form-check-input', 'input__check'],
 				id: id,
+			}),
+			buildElement('div', {
+				classes: [radio_style],
 			}),
 			buildElement('label', {
 				attrs: [{name: 'for', value: id}],

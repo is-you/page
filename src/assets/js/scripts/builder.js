@@ -118,7 +118,7 @@ function buildInputSelect(data_input){
 	const options = data_input.options.map(item=>buildInputSelectOption(item));
 	return [
 		buildElement('select', {
-				classes : ['form-select'],
+				classes : ['form-select', 'input__select'],
 				attrs: [{name: 'name', value: data_input.name}, {name: 'type', value: 'select'}],
 			},
 			options

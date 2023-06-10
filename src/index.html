@@ -18,119 +18,31 @@
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
+
 <div class="content">
 	<section class="section">
 		<div class="section__content">
+			<div class="preloader">
+				<?xml version="1.0" encoding="utf-8"?>
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<circle cx="30" cy="50" fill="#85a2b6" r="20">
+						<animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30" begin="-0.5s"></animate>
+					</circle>
+					<circle cx="70" cy="50" fill="#bbcedd" r="20">
+						<animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30" begin="0s"></animate>
+					</circle>
+					<circle cx="30" cy="50" fill="#85a2b6" r="20">
+						<animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30" begin="-0.5s"></animate>
+						<animate attributeName="fill-opacity" values="0;0;1;1" calcMode="discrete" keyTimes="0;0.499;0.5;1" dur="1s" repeatCount="indefinite"></animate>
+					</circle>
+				</svg>
+			</div>
+			
 			<form class="form" action="">
 				<div id='header' class="form_group form_group--header">
-					<h1 class="form__header">Form header</h1>
+					<h1 class="form__header"></h1>
 					<p class="form__description">
-						fdsff sdfdas fa dfasd fa dsfads fsdaf asdkfasdkfl aklsdfkljasd klfjksldafj fklsdaldjf kjekljca
-						kdajf fdsff sdfdas fa dfasd fa dsfads fsdaf asdkfasdkfl aklsdfkljasd klfjksldafj kadjfladsj fklsdaldjf
-						kjekljca
-						fdsff sdfdas fa dfasd fa dsfads fsdaf asdkfasdkfl aklsdfkljasd klfjksldafj kadjfladsj fklsdaldjf kjekljca
 					</p>
-				</div>
-<!--				-->
-<!--				<div class="form_group">-->
-<!--					<h4 class="form_group__header">Text</h4>-->
-<!--					<div class="input">-->
-<!--						<input class="input__control form-control" type="text" required>-->
-<!--						<p class="input__placeholder"></p>-->
-<!--						<div class="invalid-feedback">-->
-<!--							You must agree before submitting.-->
-<!--						</div>-->
-<!--					-->
-<!--					</div>-->
-<!--				</div>-->
-<!--				<div class="form_group">-->
-<!--					<h4 class="form_group__header">TextArea</h4>-->
-<!--					<div class="input">-->
-<!--						<textarea class="input__control form-control" rows="3"></textarea>-->
-<!--						<p class="input__placeholder"></p>-->
-<!--						<div class="invalid-feedback">-->
-<!--							You must agree before submitting.-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--				<div class="form_group">-->
-<!--					<h4 class="form_group__header">Select</h4>-->
-<!--					<div class="input">-->
-<!--						<select class="form-select" aria-label="Default select example">-->
-<!--							<option value="" disabled selected hidden>Open this select menu</option>-->
-<!--							<option value="1">One</option>-->
-<!--							<option value="2">Two</option>-->
-<!--							<option value="3">Three</option>-->
-<!--						</select>-->
-<!--						<p class="input__placeholder"></p>-->
-<!--						<div class="invalid-feedback">-->
-<!--							You must agree before submitting.-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--				<div class="form_group">-->
-<!--					<h4 class="form_group__header">CheckBox</h4>-->
-<!--					<div class="input">-->
-<!--&lt;!&ndash;						<div class="form-check">&ndash;&gt;-->
-<!--&lt;!&ndash;							<input class="form-check-input form__check" type="checkbox" value="" id="flexCheckDisabled" disabled>&ndash;&gt;-->
-<!--&lt;!&ndash;							<label class="form-check-label form__label" for="flexCheckDisabled">&ndash;&gt;-->
-<!--&lt;!&ndash;								Disabled checkbox&ndash;&gt;-->
-<!--&lt;!&ndash;							</label>&ndash;&gt;-->
-<!--&lt;!&ndash;						</div>&ndash;&gt;-->
-<!--							<div class="form-check">-->
-<!--								<input class="form-check-input form__check" type="checkbox" value="" id="flexCheckDisabled">-->
-<!--								<label class="form-check-label form__label" for="flexCheckDisabled">-->
-<!--									Enable checkbox-->
-<!--								</label>-->
-<!--							</div>-->
-<!--							<div class="invalid-feedback">-->
-<!--								You must agree before submitting.-->
-<!--							</div>-->
-<!--						</div>-->
-<!--				</div>-->
-<!--				<div class="form_group">-->
-<!--					<h4 class="form_group__header">Radio</h4>-->
-<!--					<div class="input">-->
-<!--						<div class="form-check">-->
-<!--							<input class="form-check-input form__check" type="radio" name="flexRadioDefault" id="flexRadioDefault1">-->
-<!--							<label class="form-check-label form__label" for="flexRadioDefault1">-->
-<!--								Default radio-->
-<!--							</label>-->
-<!--						</div>-->
-<!--						<div class="form-check">-->
-<!--							<input class="form-check-input form__check" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>-->
-<!--							<label class="form-check-label form__label" for="flexRadioDefault2">-->
-<!--								Default checked radio-->
-<!--							</label>-->
-<!--						</div>-->
-<!--						<div class="invalid-feedback">-->
-<!--							You must agree before submitting.-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--				<div class="form_group">-->
-<!--					<h4 class="form_group__header">DataPicker</h4>-->
-<!--					<div class="input">-->
-<!--						<input id="datepicker" class="input__control form-control" type="text">-->
-<!--						<p class="input__placeholder"></p>-->
-<!--						<div class="invalid-feedback">-->
-<!--							You must agree before submitting.-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--				<div class="form_group">-->
-<!--					<h4 class="form_group__header">TimePicker</h4>-->
-<!--					<div class="input">-->
-<!--						<input id="timepicker" class="input__control form-control" type="text">-->
-<!--						<p class="input__placeholder"></p>-->
-<!--						<div class="invalid-feedback">-->
-<!--							You must agree before submitting.-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				</div>-->
-				<div class="form_group form_group--send">
-					<button type="button" class="btn form__send">Send Button</button>
-					<button type="button" class="btn btn-link form__link">Link</button>
 				</div>
 			</form>
 		</div>

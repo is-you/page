@@ -172,7 +172,7 @@ function js() {
 }
 
 function json() {
-	return src('./srs/test.json')
+	return src('./src/test.json')
 		.pipe(gulp.dest('./build/'))
 }
 
@@ -183,7 +183,7 @@ function watch() {
 	gulp.watch(paths.js, js);
 }
 
-gulp.task('build', parallel(css, js, html));
+gulp.task('build', parallel(css, js, html, json));
 gulp.task('font', fonts);
 gulp.task('css', css);
 gulp.task('js', js);

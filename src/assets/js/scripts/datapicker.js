@@ -1,14 +1,20 @@
 function datepicker_init(){
 	const config = {
-		minDate: "today",
-		maxDate: new Date().fp_incr(14),
-		dateFormat: "Y-m-d",
+			altInput: true,
+			altFormat: "d.m.Y", // view
+			dateFormat: "Y.m.d",
 	}
-
 	const datepickers = document.querySelectorAll(".datepicker");
 
 	for (const el of datepickers) {
-		const el_datepicker =flatpickr(el, config);
+
+		const current_config = {
+			altInput: (el.dataset.altinput) ? el.dataset.altinput : config.altInput,
+			altFormat: (el.dataset.altformat) ? el.dataset.altformat : config.altFormat,
+			dateFormat: (el.dataset.dateformat) ? el.dataset.dateformat : config.dateFormat,
+		}
+
+		const el_datepicker =flatpickr(el, current_config);
 	}
 }
 
@@ -18,6 +24,11 @@ function timepicker_init(){
 		noCalendar: true,
 		dateFormat: "H:i",
 		time_24hr: true,
+		onOpen: function (selectedDates, dateStr, instance){
+			if(selectedDates.length === 0){
+				instance._input.value = '12:00';
+			}
+		}
 	}
 	const timepicker = document.querySelectorAll(".timepicker");
 

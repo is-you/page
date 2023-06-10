@@ -1,15 +1,22 @@
-async function createForm(){
+async function createForm(link){
 	const form = document.querySelector('.form');
-	const header_block = form.querySelector('#header');
+	const el_header = form.querySelector('#header');
 
-	const data = await getData();
+	const data = await getData(link);
 
-	for (const input of data) {
-		header_block.after(buildFormGroup(input));
+	const form_header = data.header;
+	const form_desc = data.desc;
+	const form_inputs = data.frames;
+
+	initForm(form, form_header, form_desc);
+
+	for (const input of form_inputs) {
+		form.append(buildFormGroup(input));
 	}
+
+	pseudoValidate(form, tgValid, tgInvalid);
 	datepicker_init();
 	timepicker_init();
-	// after
 }
 
 function buildElement(elementName, options, childs = []) {
@@ -25,8 +32,8 @@ function buildElement(elementName, options, childs = []) {
 	return childs.reduce((buildElement, child) => buildElement.appendChild(child) && buildElement, buildElement);
 }
 
-function getData(){
-	return fetch('test.json')
+function getData(link){
+	return fetch(link)
 		.then(response => {
 			if (response.ok) {
 				return  response.json();
@@ -38,6 +45,13 @@ function getData(){
 		.catch(err=>{
 			console.log(err.status)
 		})
+}
+
+function initForm(el_form, form_header, form_desc){
+	el_form.querySelector('.form__header').textContent = form_header;
+	el_form.querySelector('.form__description').textContent = form_desc;
+	el_form.style.display= 'flex';
+	document.querySelector('.preloader').style.display = 'none';
 }
 
 function getInput(data_input){
@@ -93,13 +107,15 @@ function buildInputTextArea(data_input){
 			classes : ['input__control', 'form-control'],
 			attrs: [{name: 'row', value: '3'}, {name: 'name', value: data_input.name}],
 		}),
-		buildElement('p', { classes : ['input__placeholder']}),
+		buildElement('p', {
+			classes : ['input__placeholder'],
+			textContent: data_input.placeholder
+		}),
 	]
 }
 
 function buildInputSelect(data_input){
 	const options = data_input.options.map(item=>buildInputSelectOption(item));
-	console.log(options);
 	return [
 		buildElement('select', {
 				classes : ['form-select'],
@@ -121,8 +137,6 @@ function buildInputCheck(data_input){
 	const typo = data_input.type;
 	const name = data_input.name;
 	const options = data_input.options.map((item, index)=>buildInputCheckOption(item, name, typo, index));
-	console.log(options);
-	console.log(typo);
 	return options;
 }
 
@@ -146,12 +160,26 @@ function buildInputCheckOption(option_data, option_name, option_type, index){
 }
 
 function buildInputDatepicker(data_input){
+	let attrs = [
+		{name: 'type', value: 'text'},
+		{name: 'name', value: data_input.name},
+	];
+
+	if (data_input.dateFormat)
+		attrs.push({name: 'data-dateformat', value: data_input.dateFormat});
+	if (data_input.altInput)
+		attrs.push({name: 'data-altinput', value: data_input.altInput});
+	if (data_input.dateFormat)
+		attrs.push({name: 'data-altformat', value: data_input.altFormat});
 	return [
 		buildElement('input', {
 			classes : ['input__control', 'form-control', 'datepicker'],
-			attrs: [{name: 'type', value: 'text'},  {name: 'name', value: data_input.name},],
+			attrs : attrs,
 		}),
-		buildElement('p', { classes : ['input__placeholder']}),
+		buildElement('p', {
+			classes : ['input__placeholder'],
+			textContent: data_input.placeholder
+		}),
 	]
 }
 
@@ -161,7 +189,10 @@ function buildInputTimepicker(data_input){
 			classes : ['input__control', 'form-control', 'timepicker'],
 			attrs: [{name: 'type', value: 'text'},  {name: 'name', value: data_input.name},],
 		}),
-		buildElement('p', { classes : ['input__placeholder']}),
+		buildElement('p', {
+			classes : ['input__placeholder'],
+			textContent: data_input.placeholder
+		}),
 	]
 }
 

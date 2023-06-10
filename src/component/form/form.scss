@@ -1,5 +1,7 @@
 .form{
-	display: flex;
+	display:  none;
+	
+	//display: flex;
 	flex-direction: column;
 	
 	&__header{
@@ -17,8 +19,6 @@
 	
 	}
 	
-	
-	
 	&__send{
 		min-width: 200px;
 		max-width: 50px;
@@ -27,12 +27,12 @@
 		font-weight: 500;
 		line-height: 36px;
 		
-		color: #fff;
+		color: var(--color-button-text) ;
 		border: var(--color-decor) ;
 		background-color: var(--color-decor) ;
 		
 		&:hover{
-			color: #fff;
+			color: var(--color-button-text) ;
 			background-color: var(--color-decor) ;
 		}
 	}
@@ -59,7 +59,7 @@
 	
 	padding: var(--padding-form-block) ;
 	
-	background-color: #fff;
+	background-color: var(--color-form-background) ;
 	border: 1px solid #dadce0;
 	border-radius: 8px;
 	

@@ -20,7 +20,6 @@ class App {
 		createForm(link);
 
 		window.addEventListener('load', () => {
-
 		});
 	}
 }
@@ -40,6 +39,7 @@ function getEncodeLink(link_encoded){
 }
 
 function tgSetting(tg){
+	tg.enableClosingConfirmation();
 	tg.isClosingConfirmationEnable = true;
 	const btn = tg.MainButton;
 	btn.setText('Send');

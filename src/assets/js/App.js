@@ -9,10 +9,9 @@ class App {
 	init() {
 		const tg = window.Telegram.WebApp;
 
-		//let link = 'test.json';
+		//let link = 'https://bs1.konser.ru/3121/notifybot/doget?action=timezone&userid=563861630';
 		let link_encoded = getWrongUrlParam();
 		let link = getEncodeLink(link_encoded);
-
 		console.log(link);
 
 		mainButtonClicked.bind(link);
@@ -65,7 +64,7 @@ function tgSetting(tg) {
 }
 
 function mainButtonClicked(link){
-	const data = getData();
+	const data = getFormData();
 
 	console.log(link, data);
 

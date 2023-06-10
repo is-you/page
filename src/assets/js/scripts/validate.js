@@ -18,7 +18,7 @@ function pseudoValidate(el_form, valid, invalid) {
 	});
 }
 
-function getData() {
+function getFormData() {
 	let form = document.querySelector('.form');
 	let formData = new FormData(form);
 	let formObj = {};

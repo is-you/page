@@ -14,7 +14,7 @@ class App {
 		let link = getEncodeLink(link_encoded);
 		console.log(link);
 
-		mainButtonClicked.bind(link);
+		mainButtonClicked = mainButtonClicked.bind(null, link);
 
 		if (tg.headerColor !== null) {
 			setColorScheme(tg.themeParams);
@@ -43,6 +43,7 @@ function getWrongUrlParam() {
 	let url = window.location.href;
 
 	let url_clear = url.split('#')[0];
+
 	let url_params_row = url_clear.split('?')[1];
 	let url_callback_value = url_params_row.split('=')[1]
 

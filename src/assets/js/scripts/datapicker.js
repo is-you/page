@@ -12,6 +12,7 @@ function datepicker_init(){
 			altInput: (el.dataset.altinput) ? el.dataset.altinput : config.altInput,
 			altFormat: (el.dataset.altformat) ? el.dataset.altformat : config.altFormat,
 			dateFormat: (el.dataset.dateformat) ? el.dataset.dateformat : config.dateFormat,
+			disableMobile: "true",
 		}
 
 		const el_datepicker =flatpickr(el, current_config);
@@ -24,6 +25,7 @@ function timepicker_init(){
 		noCalendar: true,
 		dateFormat: "H:i",
 		time_24hr: true,
+		disableMobile: "true",
 		onOpen: function (selectedDates, dateStr, instance){
 			if(selectedDates.length === 0){
 				instance._input.value = '12:00';

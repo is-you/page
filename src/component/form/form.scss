@@ -58,30 +58,32 @@
 	margin-bottom: var(--margin-form-block) ;
 	
 	padding: var(--padding-form-block) ;
-	
 	background-color: var(--color-form-background) ;
-	border: 1px solid #dadce0;
-	border-radius: 8px;
+	
+	box-shadow: 0 1px 5px rgba(0,0,0,.4) ;
+	
+	&:last-child{
+		margin-bottom : 0;
+	}
 	
 	&--header{
 		border-top: 12px var(--color-decor) solid;
-		padding-top: 32px;
+		padding-top: var(--padding-form-block);
 		margin-top : 0;
-		
 	}
 	
-	&--send{
-		display: flex;
-		justify-content: space-between;
-		
-		padding-left: 0;
-		padding-right: 0;
-		margin-bottom : 0;
-		padding-bottom : 0;
-		
-		border: none;
-		background: transparent;
-	}
+	//&--send{
+	//	display: flex;
+	//	justify-content: space-between;
+	//
+	//	padding-left: 0;
+	//	padding-right: 0;
+	//	margin-bottom : 0;
+	//	padding-bottom : 0;
+	//
+	//	border: none;
+	//	background: transparent;
+	//}
 	
 	&__header{
 		margin-bottom: var(--padding-form-block) ;

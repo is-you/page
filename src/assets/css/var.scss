@@ -19,7 +19,7 @@ $mobile: 600px;
   /* SIZE BLOCK */
 
   --padding-form-block: 12px;
-  --margin-form-block: 8px;
+  --margin-form-block: 4px;
 
   /* FONT */
   
@@ -42,7 +42,7 @@ $mobile: 600px;
   
   @media screen and (min-width: $mobile){
     --padding-form-block: 24px;
-    --margin-form-block: 12px;
+    --margin-form-block: 6px;
     
     --text-control: 18px;
     --text-p: 16px;

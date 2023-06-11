@@ -37,6 +37,8 @@
 		}
 	}
 	
+	
+	
 	&-weekday{
 		font-family : 'Roboto', sans-serif;
 		font-weight : 400;
@@ -54,4 +56,8 @@
 .flatpickr-months .flatpickr-prev-month, .flatpickr-months .flatpickr-next-month {
 	display: flex;
 	align-items: center;
+}
+
+.flatpickr-current-month .numInputWrapper{
+	padding: 0 10px;
 }

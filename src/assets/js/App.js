@@ -9,7 +9,7 @@ class App {
 	init() {
 		const tg = window.Telegram.WebApp;
 
-		//let link = 'test.json';
+//		let link = 'test.json';
 		let link_encoded = getWrongUrlParam();
 		let link = getEncodeLink(link_encoded);
 		mainButtonClicked = mainButtonClicked.bind(null, link);

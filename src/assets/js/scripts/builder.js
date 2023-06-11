@@ -8,28 +8,25 @@ async function createForm(link){
 	const form_inputs = data.frames;
 	const form_button = data.button;
 
-	initForm(form, form_header, form_desc, form_button);
-
 	for (const input of form_inputs) {
 		form.append(buildFormGroup(input));
 	}
-
-	pseudoValidate(form, tgValid, tgInvalid);
-	datepicker_init();
-	timepicker_init();
+	initForm(form, form_header, form_desc, form_button);
 }
 
-function buildElement(elementName, options, childs = []) {
-	const buildElement = (options.attrs || [])
-		.reduce((buildElement, attr) => {
-				return buildElement.setAttribute(attr.name, attr.value) || buildElement},
-			document.createElement(elementName));
-	buildElement.className = (options.classes || []).join(' ');
-	buildElement.textContent = options.textContent;
-	if (options.id)
-		buildElement.id = options.id;
+function initForm(el_form, form_header, form_desc, form_button){
+	const el_header = el_form.querySelector('#header');
 
-	return childs.reduce((buildElement, child) => buildElement.appendChild(child) && buildElement, buildElement);
+	el_form.style.display= 'flex';
+	el_header.querySelector('.form__header').textContent = form_header;
+	document.querySelector('.preloader').style.display = 'none';
+
+	el_header.append(buildElement('div', { classes : ['form__description']}, buildDescription(form_desc)));
+
+	datepicker_init();
+	timepicker_init();
+	tgSetting(form_button);
+	pseudoValidate(el_form, tgValid);
 }
 
 function getData(link){
@@ -45,17 +42,6 @@ function getData(link){
 		.catch(err=>{
 			console.log(err.status)
 		})
-}
-
-function initForm(el_form, form_header, form_desc, form_button){
-	el_form.querySelector('.form__header').textContent = form_header;
-	el_form.style.display= 'flex';
-	document.querySelector('.preloader').style.display = 'none';
-
-	const el_header = el_form.querySelector('#header');
-	el_header.append(buildElement('div', { classes : ['form__description']}, buildDescription(form_desc)));
-
-	window.Telegram.WebApp.MainButton.setText(form_button);
 }
 
 function getInput(data_input){
@@ -82,6 +68,19 @@ function getInput(data_input){
 			return buildInputDatepicker(data_input);
 			break;
 	}
+}
+
+function buildElement(elementName, options, childs = []) {
+	const buildElement = (options.attrs || [])
+		.reduce((buildElement, attr) => {
+				return buildElement.setAttribute(attr.name, attr.value) || buildElement},
+			document.createElement(elementName));
+	buildElement.className = (options.classes || []).join(' ');
+	buildElement.textContent = options.textContent;
+	if (options.id)
+		buildElement.id = options.id;
+
+	return childs.reduce((buildElement, child) => buildElement.appendChild(child) && buildElement, buildElement);
 }
 
 function buildFormGroup(data_input) {
@@ -127,7 +126,9 @@ function buildInputTextArea(data_input){
 }
 
 function buildInputSelect(data_input){
-	const options = data_input.options.map(item=>buildInputSelectOption(item));
+	const default_option = data_input.default;
+	const options = data_input.options.map(item=>buildInputSelectOption(item, default_option));
+
 	return [
 		buildElement('select', {
 				classes : ['form-select', 'input__select'],
@@ -138,9 +139,15 @@ function buildInputSelect(data_input){
 	]
 }
 
-function buildInputSelectOption(option_data){
+function buildInputSelectOption(option_data, default_option){
+	let attrs =  [
+		{name: 'value', value: option_data.value},
+	];
+	if(default_option !== undefined && option_data.value === default_option){
+		attrs.push({name: 'selected', value: 'selected'});
+	}
 	return buildElement('option', {
-		attrs: [{name: 'value', value: option_data.value}],
+		attrs: attrs,
 		textContent: option_data.label,
 	})
 }
@@ -148,19 +155,29 @@ function buildInputSelectOption(option_data){
 function buildInputCheck(data_input){
 	const typo = data_input.type;
 	const name = data_input.name;
-	const options = data_input.options.map((item, index)=>buildInputCheckOption(item, name, typo, index));
+	const default_option = data_input.default;
+
+	const options = data_input.options.map((item, index)=>buildInputCheckOption(item, name, typo, default_option, index));
 	return options;
 }
 
-function buildInputCheckOption(option_data, option_name, option_type, index){
+function buildInputCheckOption(option_data, option_name, option_type, default_option, index){
 	const id = (option_name + index);
 	//const radio_style = (option_type === 'radio') ? 'input__check__decor' : '';
+	let attrs = [
+		{name: 'name', value: option_name},
+		{name: 'value', value: option_data.value},
+		{name: 'type', value: option_type},
+	];
+	if(default_option !== undefined && option_data.value === default_option){
+		attrs.push({name: 'checked', value: 'true'});
+	}
 	return buildElement('div', {
 		classes: ['form-check']
 	},
 		[
 			buildElement('input', {
-				attrs: [{name: 'name', value: option_name}, {name: 'value', value: option_data.value}, {name: 'type', value: option_type}],
+				attrs: attrs,
 				classes: ['form-check-input', 'input__check'],
 				id: id,
 			}),

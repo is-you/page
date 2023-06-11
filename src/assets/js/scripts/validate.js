@@ -1,20 +1,45 @@
-function pseudoValidate(el_form, valid, invalid) {
-	const text_inputs = el_form.querySelectorAll('input[type="text"]:not([readonly="readonly"]), textarea');
+function pseudoValidate(el_form, valid) {
+	const text_inputs = el_form.querySelectorAll('input[type="text"]:not([readonly="readonly"]), .timepicker, input[type="hidden"], textarea');
+	const radio_inputs = el_form.querySelectorAll('input[type="radio"]');
+	const group_radio_inputs = radioInputsToGroup(radio_inputs);
+
 	let is_valid = false;
 
+	console.log(text_inputs);
+
+
 	el_form.addEventListener('change', () => {
-		for (let i = 0, length = text_inputs.length - 1; i <= length; i++) {
-			console.log(text_inputs.name, text_inputs[i].value);
-			if (text_inputs[i].value !== '') {
-				is_valid = true;
-				valid();
-			} else {
-				is_valid = false;
-				invalid();
-				break;
-			}
+		let curr_valid = true;
+
+		let radio_group = Object.keys(group_radio_inputs);
+		for (let i = 0, length = radio_group.length - 1; i <= length && curr_valid; i++) {
+			let is_checked = group_radio_inputs[radio_group[i]].find(item => item.el.checked === true);
+			curr_valid = (is_checked !== undefined);
 		}
+
+		for (let i = 0, length = text_inputs.length - 1; i <= length && curr_valid; i++) {
+			curr_valid = (text_inputs[i].value !== '');
+			console.log(curr_valid, i);
+		}
+
+		valid(curr_valid);
 	});
+}
+
+function radioInputsToGroup(radio_inputs){
+	return [...radio_inputs]
+		.map(el => ({
+			el: el,
+			name: el.name,
+		}))
+		.sort((a, b) => a.name > b.name ? 1 : -1)
+		.reduce((group, item) => {
+			if(group[item.name] === undefined) {
+				group[item.name] = [];
+			}
+			group[item.name].push(item);
+			return group;
+		}, {});
 }
 
 function getFormData() {
@@ -31,24 +56,27 @@ function getFormData() {
 		})
 	).filter((item)=>
 		(
-			(!item.check && !(item.type === 'checkbox' || item.type === 'radio'))
+			(!item.check && item.type !== 'radio')
 			||
-			(item.check && (item.type === 'checkbox' || item.type === 'radio' ))
+			(item.check && item.type === 'radio')
+			||
+			item.type === 'checkbox'
 		)
 	);
+
+	console.log(name_types);
 
 	name_types.forEach(item => {
 		if(item.type === 'checkbox'){
 			if(formObj[item.name] === undefined) {
-				formObj[item.name] = [item.value];
-			} else {
+				formObj[item.name] = [];
+			}
+			if(item.check){
 				formObj[item.name].push(item.value);
 			}
 		} else {
 			formObj[item.name] = item.value;
 		}
 	})
-
-
 	return formObj;
 }

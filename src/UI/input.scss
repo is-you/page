@@ -94,13 +94,14 @@
 		
 		&[type=checkbox]:checked + &__decor{
 			border-color : var(--color-decor);
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			
 			&:before {
-				position: absolute;
 				content: "\ea10";
 				color: var(--color-decor) ;
 				font-size: 10px;
-				right : 0;
 				
 				font-family: 'icomoon' !important;
 				speak: never;

@@ -50,5 +50,5 @@ function getFormData() {
 	})
 
 
-	return name_types;
+	return formObj;
 }

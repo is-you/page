@@ -2,7 +2,6 @@ async function createForm(link){
 	const form = document.querySelector('.form');
 
 	const data = await getData(link);
-	console.log(data);
 
 	const form_header = data.header;
 	const form_desc = data.desc;
@@ -155,7 +154,7 @@ function buildInputCheck(data_input){
 
 function buildInputCheckOption(option_data, option_name, option_type, index){
 	const id = (option_name + index);
-	const radio_style = (option_type === 'radio') ? 'input__check__decor' : '';
+	//const radio_style = (option_type === 'radio') ? 'input__check__decor' : '';
 	return buildElement('div', {
 		classes: ['form-check']
 	},
@@ -166,7 +165,7 @@ function buildInputCheckOption(option_data, option_name, option_type, index){
 				id: id,
 			}),
 			buildElement('div', {
-				classes: [radio_style],
+				classes: ['input__check__decor'],
 			}),
 			buildElement('label', {
 				attrs: [{name: 'for', value: id}],
@@ -218,7 +217,6 @@ function buildInputTimepicker(data_input){
 }
 
 function buildDescription(text){
-	console.log(text);
 	let rows = text.split('\n');
 	return rows.map(row => buildElement('p', {textContent:row}));
 }

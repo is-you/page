@@ -46,52 +46,81 @@
 		-webkit-print-color-adjust : exact;
 		float                      : left;
 		
-		&[type=radio] {
-			opacity : 0;
-		}
+		opacity : 0;
 		
 		&__decor {
 			position         : absolute;
-			border-radius    : 50%;
+			
 			width            : 1em;
 			height           : 1em;
 			margin-top       : 0.25em;
 			
-			border           : 2px solid transparent;
+			border           : 2px solid var(--color-hint) ;
 			box-sizing       : border-box;
-			background-color : var(--color-background);
+			background-color : var(--color-form-background);
+			
+			pointer-events: none;
 			
 			&:after {
 				opacity          : 0;
 				position         : absolute;
 				content          : '';
 				
-				border-radius    : 50%;
+				
 				
 				width            : calc(1em - 8px);
 				height           : calc(1em - 8px);
 				top              : 2px;
 				left             : 2px;
-				
-				background-color : var(--color-decor);
 			}
 		}
 		
-		&[type=radio]:checked + &__decor {
+		&[type=radio] + &__decor{
+			border-radius    : 50%;
+		}
+		
+		&[type=radio]:checked + &__decor{
 			border-color : var(--color-decor);
-			
-			&:after {
-				opacity : 1;
-			}
+				&:after {
+					opacity : 1;
+					border-radius    : 50%;
+					background-color : var(--color-decor);
+				}
 		}
 		
-		&[type=checkbox] {
+		&[type=checkbox] + &__decor{
 			border-radius : 0.25em;
 		}
 		
-		
-		&[type=checkbox]:checked {
-			background-image : url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
+		&[type=checkbox]:checked + &__decor{
+			border-color : var(--color-decor);
+			
+			&:before {
+				position: absolute;
+				content: "\ea10";
+				color: var(--color-decor) ;
+				font-size: 10px;
+				right : 0;
+				
+				font-family: 'icomoon' !important;
+				speak: never;
+				font-style: normal;
+				font-weight: normal;
+				font-variant: normal;
+				text-transform: none;
+				
+				/* Enable Ligatures ================ */
+				letter-spacing: 0;
+				-webkit-font-feature-settings: "liga";
+				-moz-font-feature-settings: "liga=1";
+				-moz-font-feature-settings: "liga";
+				-ms-font-feature-settings: "liga" 1;
+				font-feature-settings: "liga";
+				-webkit-font-variant-ligatures: discretionary-ligatures;
+				font-variant-ligatures: discretionary-ligatures;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
 		}
 		
 	}
@@ -152,4 +181,12 @@
 		opacity   : 0;
 		transform : translateY(-50%);
 	}
+}
+
+
+.test{
+	position : absolute;
+	width : 100px;
+	height : 100px;
+	background-image: url('#icon-cart');
 }

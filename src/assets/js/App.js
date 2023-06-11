@@ -9,11 +9,10 @@ class App {
 	init() {
 		const tg = window.Telegram.WebApp;
 
-		//let link = 'https://bs1.konser.ru/3121/notifybot/doget?action=timezone&userid=563861630';
+		//let link = 'test.json';
 		let link_encoded = getWrongUrlParam();
 		let link = getEncodeLink(link_encoded);
 		console.log(link);
-
 		mainButtonClicked = mainButtonClicked.bind(null, link);
 
 		if (tg.headerColor !== null) {
@@ -75,7 +74,18 @@ function mainButtonClicked(link){
 			'Content-Type': 'application/json;charset=utf-8'
 		},
 		body: JSON.stringify(data)
-	});
+	})
+		.then(response => {
+		if (response.ok) {
+			window.Telegram.WebApp.close();
+		}
+		else{
+			return Promise.reject(response);
+		}
+	})
+		.catch(err=>{
+			console.log(err.status)
+		});
 }
 
 function tgValid() {

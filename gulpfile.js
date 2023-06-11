@@ -183,7 +183,7 @@ function watch() {
 	gulp.watch(paths.js, js);
 }
 
-gulp.task('build', parallel(css, js, html, json));
+gulp.task('build', parallel(css, js, html, json, fonts));
 gulp.task('font', fonts);
 gulp.task('css', css);
 gulp.task('js', js);

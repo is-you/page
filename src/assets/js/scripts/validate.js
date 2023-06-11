@@ -14,24 +14,41 @@ function pseudoValidate(el_form, valid, invalid) {
 				break;
 			}
 		}
-		;
 	});
 }
 
 function getFormData() {
 	let form = document.querySelector('.form');
-	let formData = new FormData(form);
 	let formObj = {};
 
-	for (let pair of formData.entries()) {
-		if(formObj[pair[0]] !== undefined) {
-			formObj[pair[0]] = [formObj[pair[0]], pair[1]];
-			formObj[pair[0]] = formObj[pair[0]].flat();
-		}
-		else{
-			formObj[pair[0]] = pair[1];
-		}
-	}
+	let el_inputs = [...form.querySelectorAll('input:not([readonly="readonly"]), .timepicker, textarea, select')];
 
-	return formObj;
+	let name_types = el_inputs.map(el=> ({
+			name: el.name,
+			type: el.type,
+			value: el.value,
+			check: el.checked
+		})
+	).filter((item)=>
+		(
+			(!item.check && !(item.type === 'checkbox' || item.type === 'radio'))
+			||
+			(item.check && (item.type === 'checkbox' || item.type === 'radio' ))
+		)
+	);
+
+	name_types.forEach(item => {
+		if(item.type === 'checkbox'){
+			if(formObj[item.name] === undefined) {
+				formObj[item.name] = [item.value];
+			} else {
+				formObj[item.name].push(item.value);
+			}
+		} else {
+			formObj[item.name] = item.value;
+		}
+	})
+
+
+	return name_types;
 }

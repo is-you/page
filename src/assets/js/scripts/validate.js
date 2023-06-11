@@ -7,8 +7,7 @@ function pseudoValidate(el_form, valid) {
 
 	console.log(text_inputs);
 
-
-	el_form.addEventListener('change', () => {
+	el_form.addEventListener('input', () => {
 		let curr_valid = true;
 
 		let radio_group = Object.keys(group_radio_inputs);

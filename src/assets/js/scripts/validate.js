@@ -1,11 +1,8 @@
-function pseudoValidate(el_form, valid) {
+function pseudoValidate() {
+	const el_form = document.querySelector('.form');
 	const text_inputs = el_form.querySelectorAll('input[type="text"]:not([readonly="readonly"]), .timepicker, input[type="hidden"], textarea');
 	const radio_inputs = el_form.querySelectorAll('input[type="radio"]');
 	const group_radio_inputs = radioInputsToGroup(radio_inputs);
-
-	let is_valid = false;
-
-	console.log(text_inputs);
 
 	el_form.addEventListener('input', () => {
 		let curr_valid = true;
@@ -18,10 +15,9 @@ function pseudoValidate(el_form, valid) {
 
 		for (let i = 0, length = text_inputs.length - 1; i <= length && curr_valid; i++) {
 			curr_valid = (text_inputs[i].value !== '');
-			console.log(curr_valid, i);
 		}
 
-		valid(curr_valid);
+		tgValid(curr_valid);
 	});
 }
 

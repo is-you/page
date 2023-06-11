@@ -26,7 +26,7 @@ function initForm(el_form, form_header, form_desc, form_button){
 	datepicker_init();
 	timepicker_init();
 	tgSetting(form_button);
-	pseudoValidate(el_form, tgValid);
+	pseudoValidate();
 }
 
 function getData(link){
